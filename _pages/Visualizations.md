@@ -1,8 +1,7 @@
 ---
 layout: archive
-permalink: /Visualizations/
+permalink: /visualizations/
 title: : "Visualizations"
-author_profile: true
 header:
   image: "/images/Bridge.jpg"
 ---

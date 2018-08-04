@@ -1,7 +1,8 @@
 ---
 layout: archive
 permalink: /visualizations/
-title: : "Visualizations"
+title: : "Visualizations by tag"
+author_profile: true
 header:
   image: "/images/Bridge.jpg"
 ---

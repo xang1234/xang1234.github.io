@@ -1,6 +1,6 @@
 ---
 layout: archives
-permalink: /Visualizations
+permalink: /Visualizations/
 title: : "Visualizations"
 author_profile: true
 header:

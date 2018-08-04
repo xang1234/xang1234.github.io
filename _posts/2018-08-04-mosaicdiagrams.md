@@ -1,15 +1,15 @@
 ---
-title: "Mosaic Plots"
+title: "Mosaic Plots in R with ggplot2"
 date: 2018-08-04
-tags: [Visualization, Mosaic Diagrams, MariMekko, ggplot2]
-excerpt: "Visualization, Mosaic Diagrams, MariMekko"
+tags: [Visualization, Mosaic Diagrams, MariMekko, ggplot2,R]
+excerpt: "Mosaic diagrams or MariMekko diagrams are an alternative to bar plots . Traditional bar plots have categories on one axis and quantities on the other. If we have 2 categories we would normally use multiple bar plots to display the data. With mosaic diagrams, the dimensions on both the x and y axis vary in order to reflect the different proportions. Consider a hypothetical company with sales across the USA. Sales can be categorized by state and by product category. We would typically use multiple bar charts to represent the data..."
 ---
 ### Introduction
-Mosaic diagrams or MariMekko diagrams are an alternative to bar plots . Traditional bar plots have categories on one axis and quantities on the other. If we have 2 categories we would normally use multiple bar plots to display the data. With mosaic diagrams, the dimensions on both the x and y axis vary in order to reflect the different proportions. Consider a hypothetical company with sales across the USA. Sales can be categorized by state and by product category. We would typically use multiple bar charts to represent the data.
-{: style="text-align: left;"}
+[Mosaic plots](https://en.wikipedia.org/wiki/Mosaic_plot) or MariMekko plots are an alternative to bar plots . Traditional bar plots have categories on one axis and quantities on the other. If we have 2 categories we would normally use multiple bar plots to display the data. With mosaic plots, the dimensions on both the x and y axis vary in order to reflect the different proportions. Consider a hypothetical company with sales across the USA. Sales can be categorized by state and by product category. We would typically use multiple bar charts to represent the data.
+{: style="text-align: justify;"}
 ### Data
 
-The sales data can be split along 2 categories: State and Major Category. State has 7 levels - CT, DE, MA, ME, NJ, NY, PA while Major Category has 4 - General Merchandise, Health Care, Home Health Care and Personal Care.
+The sales data can be split along 2 categories: State and Major Category. State has 6 levels - CT, MA, ME, NJ, NY, PA while Major Category has 4 - General Merchandise, Health Care, Home Health Care and Personal Care.
 
 <img src="{{site.url }}{{site.baseurl }}/images/mosaic_diagrams/Data.jpeg" alt="">
 
@@ -119,8 +119,10 @@ ggplot(data_mosaic2) +
   scale_y_continuous( breaks = labels$y, limits = c(0, 1),
                       labels = scales::percent)+
   theme_minimal()+
-  theme(axis.title=element_blank())+
+  theme(axis.title=element_blank(),
+        plot.title = element_text(hjust = 0.5))+
   ggtitle("Sales by Major Category and State")
-```  
+```
+The end result:
 
 <img src="{{site.url }}{{site.baseurl }}/images/mosaic_diagrams/improvemosaic.jpeg" alt="">

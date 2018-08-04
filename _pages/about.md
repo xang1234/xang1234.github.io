@@ -2,7 +2,7 @@
 title: "About"
 permalink: /about/
 header :
-  image: "/images/Bergen.jpg"
+  image: "/images/nz.jpg"
 ---
 
 Starting out my Data Science Journey

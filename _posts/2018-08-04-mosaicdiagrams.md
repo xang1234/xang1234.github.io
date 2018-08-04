@@ -10,7 +10,7 @@ excerpt: "Mosaic diagrams or MariMekko diagrams are an alternative to bar plots 
 ### Data
 
 The sales data can be split along 2 categories: State and Major Category. State has 6 levels - CT, MA, ME, NJ, NY, PA while Major Category has 4 - General Merchandise, Health Care, Home Health Care and Personal Care.
-
+{: style="text-align: justify;"}
 <img src="{{site.url }}{{site.baseurl }}/images/mosaic_diagrams/Data.jpeg" alt="">
 
 
@@ -32,7 +32,7 @@ ggplot(data,aes(x=STATE.CODE,y=SALES,fill=STATE.CODE))+
 
 
 Alternatively we can stack the bars. ggpplot2 does this by default, but we need to remember to set the *stat* argument to *"identity"* within *geom_bar*  
-
+{: style="text-align: justify;"}
 ```r
 ggplot(data,aes(x=STATE.CODE,y=SALES,fill=MAJOR.CATEGORY))+
   geom_bar(stat="identity")
@@ -45,7 +45,7 @@ The stacked bar plots allow easy comparison across states but comparing across m
 ### Mosaic plots
 
 Mosaic plots allow us to visualize the both State and Product Category with one plot. However we do lose information about the absolute number of Sales. Instead we are able to compare across categories. To create a mosaic plot using base ggplot2, we would need to compute the respective x and y values for each rectangle. We represent states along the y-axis and Product Categories along the x-axis. We calculate the respective xmin, xmax, ymin and ymax of the by grouping by Product Categories and States.
-
+{: style="text-align: justify;"}
 ```r
 data_mosaic <-data %>% group_by(STATE.CODE) %>%
   mutate(
@@ -80,7 +80,7 @@ ggplot(data_mosaic2) +
 <img src="{{site.url }}{{site.baseurl }}/images/mosaic_diagrams/mosaicplot.jpeg" alt="">
 
 To improve readability we can label the states and indicate the percentage of each category on the plot. We do this with the *geom_text* function and the x and y coordinate data.
-
+{: style="text-align: justify;"}
 ```r
 labels <- data_mosaic %>%
   filter(MAJOR.CATEGORY == "PERSONAL CARE") %>%

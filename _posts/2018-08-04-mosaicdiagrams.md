@@ -27,4 +27,13 @@ ggplot(data,aes(x=STATE.CODE,y=SALES,fill=STATE.CODE))+
   facet_wrap(~MAJOR.CATEGORY,nrow=2,ncol=2)
 ```
 
-<img src="{site.url}{site.baseurl} /images/mosaic_diagrams/barplot.jpeg" alt="">
+<img src="{{site.url }}{{site.baseurl }} /images/mosaic_diagrams/barplot.jpeg" alt="">
+
+
+Alternatively we can stack the bars. ggpplot2 does this by default, but we need to remember to set the *stat* argument to *"identity"* within *geom_bar*  
+
+```r
+ggplot(data,aes(x=STATE.CODE,y=SALES,fill=MAJOR.CATEGORY))+geom_bar(stat="identity")+
+```
+
+<img src="{{site.url }}{{site.baseurl }} /images/mosaic_diagrams/stackedbarplot.jpeg" alt="">

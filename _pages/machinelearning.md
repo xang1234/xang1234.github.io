@@ -14,6 +14,6 @@ header:
     <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
     <h2><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
     {{ post.excerpt }}
-    <a href="{{ post.url | prepend: site.baseurl }}" rel="nofollow"></a>
+    <a href="{{ post.url | prepend: site.baseurl }}" rel="nofollow">Continue reading &rarr;</a>
   {% endif %}
 {% endfor %}

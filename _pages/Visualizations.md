@@ -13,7 +13,6 @@ header:
 {% for post in site.posts %}
   {% if post.tags contains "Visualization" %}
 
-    <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
     {% include archive-single.html %}
 
   {% endif %}

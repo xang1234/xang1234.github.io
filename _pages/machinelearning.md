@@ -1,25 +1,21 @@
 ---
 layout: archive
 permalink: /machine-learning/
-title: "Machine learning posts"
+title: "Machine Learning Posts"
 author_profile: true
 header:
   image: "/images/grenoble.jpeg"
 ---
 
-{% capture written_label %}'None'{% endcapture %}
+{% capture tag %}{{ page.title | slugify }}{% endcapture %}
 
-{% for collection in site.collections %}
-  {% unless collection.output == false or collection.label == "posts" %}
-    {% capture label %}{{ collection.label }}{% endcapture %}
-    {% if label != written_label %}
-      <h2 id="{{ label | slugify }}" class="archive__subtitle">{{ label }}</h2>
-      {% capture written_label %}{{ label }}{% endcapture %}
-    {% endif %}
-  {% endunless %}
-  {% for post in collection.docs %}
-    {% unless collection.output == false or collection.label == "posts" %}
-      {% include archive-single.html %}
-    {% endunless %}
-  {% endfor %}
+{% for post in site.posts %}
+  {% if post.tags contains "Machine Learning" %}
+  <li>
+    <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
+    <h2><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
+    {{ post.excerpt }}
+    <a href="{{ post.url | prepend: site.baseurl }}" rel="nofollow">Continue reading &rarr;</a>
+  </li>
+  {% endif %}
 {% endfor %}

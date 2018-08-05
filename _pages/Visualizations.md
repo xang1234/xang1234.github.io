@@ -1,7 +1,7 @@
 ---
 layout: archive
 permalink: /visualizations/
-title: "Visualizations by tag"
+title: "Visualization Posts"
 author_profile: true
 header:
   image: "/images/island.jpeg"
@@ -11,7 +11,7 @@ header:
 {% capture tag %}{{ page.title | slugify }}{% endcapture %}
 
 {% for post in site.posts %}
-  {% if post.tags contains Visualization %}
+  {% if post.tags contains "Visualization" %}
   <li>
     <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
     <h2><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>

@@ -136,7 +136,7 @@ r3
 
 We get the following animation hosted on plotly's website that we are free to embed in our websites
 
-<iframe frameborder="0" scrolling="no" src="//plot.ly/~DavidTen/7.embed"></iframe>
+<iframe width="600" height="550" frameborder="0" scrolling="no" src="//plot.ly/~DavidTen/7.embed"></iframe>
 
 We can see the decrease of Singapore's young over time from 2010 to 2017. It is also possible to swap in `% Old` in one of the axes to see how the proportion of the old is evolving over time. To visualize all 3 axes in one chart we would need to use a [ternary plot]({{site.url }}{{site.baseurl }}/ternary). Also note that we can plot bubble charts in ggplot2 as well. The extension [**gganimate**](https://github.com/thomasp85/gganimate) allows the creation of animation from ggplot2.
 {: style="text-align: justify;"}

@@ -10,7 +10,7 @@ comments: true
 {: style="text-align: justify;"}
 
 ### Data
-We will use the Singapore population [data]({{site.url }}{{site.baseurl }}/data/Singapore_Population_Calc.csv) available from Singstat (https://www.singstat.gov.sg/find-data/search-by-theme/population/geographic-distribution/latest-data). Population data in the various residential [subzones, planning areas and planning regions](https://data.gov.sg/dataset?q=Subzone+Boundary) are available from 2002 to 2017. Singstat breaks down the population by 5 year cohorts; 0-4 years old, 5-9 years old, and so forth. For our analysis we will group the population into young (0-24 years old), economically active (25-64 years old) and old (65 years and above). Here is the header of our table
+We will use the Singapore population [data]({{site.url }}{{site.baseurl }}/data/Singapore_Population_Calc.csv) available from [Singstat](https://www.singstat.gov.sg/find-data/search-by-theme/population/geographic-distribution/latest-data). Population data in the various residential [subzones, planning areas and planning regions](https://data.gov.sg/dataset?q=Subzone+Boundary) are available from 2002 to 2017. Singstat breaks down the population by 5 year cohorts; 0-4 years old, 5-9 years old, and so forth. For our analysis we will group the population into young (0-24 years old), economically active (25-64 years old) and old (65 years and above). Here is the header of our table
 {: style="text-align: justify;"}
 
 <img src="{{site.url }}{{site.baseurl }}/images/bubble-plot/data.jpg" alt="">
@@ -138,5 +138,5 @@ We get the following animation hosted on plotly's website that we are free to em
 
 <iframe width="600" height="500" frameborder="0" scrolling="no" src="//plot.ly/~DavidTen/7.embed"></iframe>
 
-We can see the decrease of Singapore's young over time from 2010 to 2017. It is also possible to swap in `% Old` in one of the axes to see how the proportion of the old is evolving over time. To visualize all 3 axes in one chart we would need to use a [ternary plot]({{site.url }}{{site.baseurl }}/_pages/2018-08-06-ternary.md). Also note that we can plot bubble charts in ggplot2 as well. The extension [**gganimate**](https://github.com/thomasp85/gganimate) allows the creation of animation from ggplot2.
+We can see the decrease of Singapore's young over time from 2010 to 2017. It is also possible to swap in `% Old` in one of the axes to see how the proportion of the old is evolving over time. To visualize all 3 axes in one chart we would need to use a [ternary plot]({{site.url }}{{site.baseurl }}/ternary). Also note that we can plot bubble charts in ggplot2 as well. The extension [**gganimate**](https://github.com/thomasp85/gganimate) allows the creation of animation from ggplot2.
 {: style="text-align: justify;"}

@@ -9,7 +9,7 @@ excerpt: "Mosaic diagrams or MariMekko diagrams are an alternative to bar plots 
 {: style="text-align: justify;"}
 ### Data
 
-The sales data can be split along 2 categories: State and Major Category. State has 6 levels - CT, MA, ME, NJ, NY, PA while Major Category has 4 - General Merchandise, Health Care, Home Health Care and Personal Care.
+The sales [data]([data]({{site.url }}{{site.baseurl }}/data/Pharmacy_sales.csv)) can be split along 2 categories: State and Major Category. State has 6 levels - CT, MA, ME, NJ, NY, PA while Major Category has 4 - General Merchandise, Health Care, Home Health Care and Personal Care.
 {: style="text-align: justify;"}
 <img src="{{site.url }}{{site.baseurl }}/images/mosaic_diagrams/Data.jpeg" alt="">
 

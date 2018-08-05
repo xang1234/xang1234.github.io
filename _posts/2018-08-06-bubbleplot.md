@@ -87,7 +87,7 @@ Here is a snapshot of the improved code output:
 
 ### Dynamic Bubble Plots
 
-Finally we can add the time dimension to animate our plot with the parameter *frame*. The function *animation_slider* allows us to modify the appearance of the slider- in this animation the year is displayed in red while *animation_opts* allows us to modify the speed or even the easing of the animation, allowing for smooth or jiggly animations.
+Finally we can add the time dimension to animate our plot with the parameter *frame*. The function *animation_slider* allows us to modify the appearance of the slider- in this animation the year is displayed in red while *animation_opts* allows us to modify the speed or even the easing of the animation, allowing for smooth or jiggly animations. The `Year` is filtered after 2010 to limit the size of the table as plotly limits the upload size for free accounts.
 {: style="text-align: justify;"}
 
 ```r
@@ -136,7 +136,7 @@ r3
 
 We get the following animation hosted on plotly's website that we are free to embed in our websites
 
-<iframe width="600" height="500" frameborder="0" scrolling="no" src="//plot.ly/~DavidTen/7.embed"></iframe>
+<iframe frameborder="0" scrolling="no" src="//plot.ly/~DavidTen/7.embed"></iframe>
 
 We can see the decrease of Singapore's young over time from 2010 to 2017. It is also possible to swap in `% Old` in one of the axes to see how the proportion of the old is evolving over time. To visualize all 3 axes in one chart we would need to use a [ternary plot]({{site.url }}{{site.baseurl }}/ternary). Also note that we can plot bubble charts in ggplot2 as well. The extension [**gganimate**](https://github.com/thomasp85/gganimate) allows the creation of animation from ggplot2.
 {: style="text-align: justify;"}

@@ -4,7 +4,7 @@ permalink: /visualizations/
 title: "Visualizations by tag"
 author_profile: true
 header:
-  image: "/images/space.jpeg"
+  image: "/images/island.jpeg"
 ---
 
 {% include base_path %}

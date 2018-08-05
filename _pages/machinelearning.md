@@ -16,7 +16,7 @@ header:
     {% for post in site.posts %}
       {% if post.tags contains "Machine Learning" %}
 
-        <p style="padding:0px; margin:0px;", class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
+        <p style="padding:0px; margin:0px;" class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
         <h2 style="padding:0px; margin:0px;"><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
         {{ post.excerpt }}
         <a href="{{ post.url | prepend: site.baseurl }}" rel="nofollow">Continue reading &rarr;</a>

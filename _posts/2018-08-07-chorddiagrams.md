@@ -17,6 +17,5 @@ http://www.global-migration.info/
 
 
 ### Chord Diagrams
-<div>
-{% include cord-diag.html %}
-</div>
+<div id="example"></div>
+<script src="{{site.basurl}}/include/cord_diag.html"></script>

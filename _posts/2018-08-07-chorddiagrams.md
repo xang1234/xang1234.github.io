@@ -28,7 +28,7 @@ mig_data$country_dest <- as.factor(mig_data$country_dest)
 mig_data<-mig_data %>% select(country_orig, country_dest, region_orig, region_dest,countryflow_2005 )
 ```
 The header of the dataset looks like this:
-<img src="{{site.url }}{{site.baseurl }}/images/chorddiag/mig.head.jpg" alt="">
+<img src="{{site.url }}{{site.baseurl }}/images/chorddiag/mig.head.JPG" alt="">
 
 In order to use the chorddiag package, our data has to be in an adjacency matrix format. Each row or column represents a country and the entry for row *i* and column *j* would represent the flow from country *i* to country *j*. We use the `as_adjacency_matrix` and `as_tbl_graph` functions from `igraph` and `tidygraph` to convert our data into an adjacency matrix.  Since bilateral flows are represented, this matrix is not symmetric. Visualizing all the countries would result in an overcrowded chord diagram. As such we filter by the flow of migrants or the regions to reduce the amount of data to be plotted. It is also possible to filter by region of origin or destination. Filtering should be done before converting the data into adjacency matrix form. In our chord diagram the filter is set to only show flows of 100k or above.
 {: style="text-align: justify;"}
@@ -41,7 +41,7 @@ mig_data_filter<-mig_data %>% filter(countryflow_2005>=100000)
 mig_data_filter<-as.matrix(as_adjacency_matrix(as_tbl_graph(mig_data_filter),attr = "countryflow_2005"))
 ```
 ### Chord Diagrams
-We can now use the **chorddiag** package to plot our data. The function `chorddiag` takes the adjacency matrix and produces a chord diagram. There are multiple parameters that can be set. These settings would need to be adjusted depending on the amount of flows to be displayed in order to avoid overcrowding of the chords or the labels. `groupnamePadding`, `groupPadding` and `margin` control the paddings and margins and should be used to increase the spacing between the various entities on the diagram. `groupColors` is set to a warm template in our case while `showTicks` is set to FALSE to avoid plotting the ticks which will crowd up our diagram. `groupnameFontsize` is adjusted to avoid country names overlapping or exceeding the plot margins. Since some country names are long it is also possible to use abbreviations to reduce the text length.
+We can now use the **chorddiag** package to plot our data. The function `chorddiag` takes the adjacency matrix and produces a chord diagram. There are multiple parameters that can be set. These settings would need to be adjusted depending on the amount of flows to be displayed in order to avoid overcrowding of the chords or the labels. `groupnamePadding`, `groupPadding` and `margin` control the paddings and margins and should be used to increase the spacing between the various entities on the diagram. `groupColors` is set to a warm template in our case while `showTicks` is set to `FALSE` to avoid plotting the ticks which will crowd up our diagram. `groupnameFontsize` is adjusted to avoid country names overlapping or exceeding the plot margins. Since some country names are long it is also possible to use abbreviations to reduce the text length.
 {: style="text-align: justify;"}
 
 ```r
@@ -62,5 +62,5 @@ We get the following chord diagram:
 <div id="htmlwidget-1ce01950515a1a48803f" style="width:660px;height:660px;" class="chorddiag html-widget"></div>
 {% include cord-diag.html %}
 
-This html widget is interactive and allows the user to explore the data by hovering over the various chords and groups. We can further enhance the visualization by allowing the user to filter the number of migrants, the period of interest and the regions via *shiny*. 
+This html widget is interactive and allows the user to explore the data by hovering over the various chords and groups. We can further enhance the visualization by allowing the user to filter the number of migrants, the period of interest and the regions via *shiny*. For additional interactivity we have access to the user clicks via the parameters `clickAction` and `clickGroupAction`.
 {: style="text-align: justify;"}

@@ -13,6 +13,7 @@ comments: true
 
 ### Data
 We will use the migration data available from http://www.global-migration.info/ . In this dataset, each row contains estimates of bilateral migration flows at region and country levels for 5-year periods (mid-year to mid-year): 1990-1995, 1995-2000, 2000-2005 and 2005-2010. After importing in the data we filter for `country_orig`,`country_dest`, `region_orig`,`region_dest` and `countryflow_2005` (for migration flows in 2005-2010).  
+{: style="text-align: justify;"}
 
 ```r
 library(tidyverse)
@@ -59,7 +60,7 @@ We get the following chord diagram:
 
 <img src="{{site.url }}{{site.baseurl }}/images/chorddiag/static.jpeg" alt="">
 
-While this image is beautiful, the full power of chord diagrams lies in its interactivity, allowing the user to hover over chords. 
+While this image is beautiful, the full power of chord diagrams lies in its interactivity, allowing the user to hover over chords.
 
 
 {% include cord-diag.html %}

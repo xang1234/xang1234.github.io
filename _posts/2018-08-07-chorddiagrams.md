@@ -13,7 +13,7 @@ htmlwidgets: true
 
 
 ### Data
-We will use the migration data available from http://www.global-migration.info/ . In this dataset, each row contains estimates of bilateral migration flows at region and country levels for 5-year periods (mid-year to mid-year): 1990-1995, 1995-2000, 2000-2005 and 2005-2010. After importing in the data we filter for `country_orig`,`country_dest`, `region_orig`,`region_dest` and `countryflow_2005` (for migration flows in 2005-2010).  
+We will use the migration data available from [http://www.global-migration.info/](http://www.global-migration.info/) . In this dataset, each row contains estimates of bilateral migration flows at region and country levels for 5-year periods (mid-year to mid-year): 1990-1995, 1995-2000, 2000-2005 and 2005-2010. After importing in the data we filter for `country_orig`,`country_dest`, `region_orig`,`region_dest` and `countryflow_2005` (for migration flows in 2005-2010).  
 {: style="text-align: justify;"}
 
 ```r
@@ -59,10 +59,8 @@ chord
 ```
 We get the following chord diagram:
 
-<img src="{{site.url }}{{site.baseurl }}/images/chorddiag/static.jpeg" alt="">
-
-While this image is beautiful, the full power of chord diagrams lies in its interactivity, allowing the user to hover over chords.
-
-
-<div id="htmlwidget-1ce01950515a1a48803f" style="width:960px;height:960px;" class="chorddiag html-widget"></div>
+<div id="htmlwidget-1ce01950515a1a48803f" style="width:660px;height:660px;" class="chorddiag html-widget"></div>
 {% include cord-diag.html %}
+
+This html widget is interactive and allows the user to explore the data by hovering over the various chords and groups. We can further enhance the visualization by allowing the user to filter the number of migrants, the period of interest and the regions via *shiny*. 
+{: style="text-align: justify;"}

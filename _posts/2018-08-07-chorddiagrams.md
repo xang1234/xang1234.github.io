@@ -62,5 +62,5 @@ We get the following chord diagram:
 
 While this image is beautiful, the full power of chord diagrams lies in its interactivity, allowing the user to hover over chords.
 
-
+<div id="element"></div>
 {% include cord-diag.html %}

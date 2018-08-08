@@ -11,7 +11,7 @@ htmlwidgets: true
 {: style="text-align: justify;"}
 
 ### Data
-For our choropleth we will display the country ETF performance from based on the list established by [Seeking Alpha])(https://seekingalpha.com/etfs-and-funds/etf-tables/countries). Note that these are country ETFs that represent the performance of a basket of stocks from a certain country and do not necessarily match the performance of the country's main stock index which may track a different basket of stocks. With the list of tickers we can download the price information using the `tidyquant` package. We will also need the spatial polygons of various countries in order to create our choropleth. This is available online, for example from [Natural Earth Data](http//www.naturalearthdata.com). This [link]((http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip)) will start the download on your browser. The spatial data is also available on the post's [github repository](({{site.url }}{{site.baseurl }}/data/ne_50m_admin_0_countries)).The unzipped folder should be placed in the working directory. The `rgdal` library is required to read the file.
+For our choropleth we will display the country ETF performance from based on the list established by [Seeking Alpha](https://seekingalpha.com/etfs-and-funds/etf-tables/countries). Note that these are country ETFs that represent the performance of a basket of stocks from a certain country and do not necessarily match the performance of the country's main stock index which may track a different basket of stocks. With the list of tickers we can download the price information using the `tidyquant` package. We will also need the spatial polygons of various countries in order to create our choropleth. This is available online, for example from [Natural Earth Data](http//www.naturalearthdata.com). This [link]((http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip)) will start the download on your browser. The spatial data is also available on the post's [github repository](({{site.url }}{{site.baseurl }}/data/ne_50m_admin_0_countries)).The unzipped folder should be placed in the working directory. The `rgdal` library is required to read the file.
 {: style="text-align: justify;"}
 
 ```r
@@ -51,40 +51,52 @@ gain_m<-merge(etf,gain_m,by.x='Ticker',by.y='symbol')
 world_etf <- merge(world, gain_m, by.x="NAME",by.y ="Country")
 ```
 ### Choropleth
-The choropleth is able to display information upon user click. We create `ytdPopup` to display the country name and monthly performance. `colorNumeric` with palette `RdYlGn` is used to create a color scheme for the different stock returns.
+The choropleth is able to display information upon user click. We create `ytdPopup` to display the country name and monthly performance.
 {: style="text-align: justify;"}
 
 ```r
 # Create a popup that displays monthly performance.
-library(leaflet)
-ytdPopup <- paste0("<strong>Country: </strong>",
+
+Popup <- paste0("<strong>Country: </strong>",
                 world_etf$NAME,
                 "<br><strong> Monthly performance: </strong>",
                 round(world_etf$R_monthly,1), "%")
-
-ytdPal <- colorNumeric("RdYlGn", na.omit(world_etf$R_monthly), n=20)
 ```
+`colorNumeric` with palette `RdYlGn` is used to create a color scheme for the different stock returns. We want the palette to be symmetric about zero. In order to achieve this, we need to **provide an interval that is centered around zero** to the parameter `domain` of colorNumeric. We achieve this by extending the original domain of the data that we want to plot, depending if the negative or positive component is larger.
+{: style="text-align: justify;"}
+
+```r
+library(leaflet)
+dom= na.omit(world_etf$R_monthly)
+a=max(abs(min(dom)),max(dom))
+monPal <- colorNumeric("RdYlGn", domain =c(-a,a), n=20)
+```
+We can then use the `leaflet` function to map our data. The `addTiles` function calls the tile from OpenStreetMap by default. The function `addPolygons` is where we specify how the country polygons should be added. `fillColor` is set to map monthly returns based on `monPal`.
 
 ```r
 leaf_world_etf <- leaflet(world_etf) %>%
   addTiles(options=tileOptions(opacity=0.6)) %>%
-  #addProviderTiles("CartoDB.Positron") %>%
   setView(lng =  20, lat =  15, zoom = 2) %>%
       addPolygons(fillOpacity = 0.6,
-                  fillColor =~ytdPal(R_monthly),
+                  fillColor =~monPal(R_monthly),
                   color = "white",
                   weight = 1,
                   opacity=1,
                   dashArray = "",
-                  layerId = ~Ticker, popup = ytdPopup) %>%
+                  layerId = ~Ticker, popup = Popup) %>%
     addLegend("bottomright", pal=ytdPal,
               values=~na.omit(R_monthly),
-    title = "Monthly",
+    title = "Monthly Performance %",
     opacity = 0.6
   )
 
 leaf_world_etf
 ```
+Our choropleth is now ready. Notice that the color legend has yellow for zero. If we did not provide an interval centered around zero to `domain` for `colorNumeric`, there would have been an offset which can confuse users. Clicking on the various countries will display the country name and monthly performance in a pop-up.
+{: style="text-align: justify;"}
 
-<div id="htmlwidget-9fe26909812a93ad4173" style="width:600px;height:400px;" class="leaflet html-widget"></div>
+
+<div id="htmlwidget-9fe26909812a93ad4173" style="width:650px;height:400px;" class="leaflet html-widget"></div>
 {% include stock_map.html %}
+
+Note that the html-widget does not pull fresh the data so our choropleth will reflect the stock performance for the month of July 2018.

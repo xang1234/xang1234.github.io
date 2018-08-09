@@ -92,10 +92,10 @@ leaf_world_etf <- leaflet(world_etf) %>%
 
 leaf_world_etf
 ```
-Our choropleth is now ready. Notice that the color legend has yellow for zero. If we did not provide an interval centered around zero to `domain` for `colorNumeric`, there would have been an offset which can confuse users. Clicking on the various countries will display the country name and monthly performance in a pop-up.
+Our choropleth is now ready. Notice that the color legend has yellow for zero. If we did not provide an interval centered around zero to `domain` for `colorNumeric`, there would have been an offset which can confuse users. Clicking on the various countries will display the country name and monthly performance in a pop-up. The user can zoom in/out and also pan the display for more information.
 {: style="text-align: justify;"}
 
-<div id="htmlwidget-8117a5c62e2a5a621f7e" style="width:650px;height:350px;" class="leaflet html-widget"></div>
+<div id="htmlwidget-8117a5c62e2a5a621f7e" style="width:750px;height:450px;" class="leaflet html-widget"></div>
 {% include stock_map.html %}
 
 Note that the html-widget does not pull fresh the data so our choropleth will reflect the stock performance for the month of July 2018. A table would probably be more efficient to display stock monthly gains, but in our case we are just using the data to illustrate how choropleths work.

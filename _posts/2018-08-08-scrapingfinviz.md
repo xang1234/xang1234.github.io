@@ -58,8 +58,9 @@ If we need to scrape data periodically it is also possible to schedule our scrap
 
 ### Data Quality
 We should also take precautions to check the quality of the scraped data. Certain metrics rely on the stock price to be calculated for example and we should find out which price is being used for the calculation. Metrics could change depending on the time the scarping is done due to  changes in the stock price. Other information such as *earning's date* can be wrong due to changes.
+{: style="text-align: justify;"}
 
-Finally we get the `scrape_finviz` function which takes a list of tickers and returns a dataframe with the finviz information. 
+Finally we get the `scrape_finviz` function which takes a list of tickers and returns a dataframe with the finviz information.
 
 ```python
 

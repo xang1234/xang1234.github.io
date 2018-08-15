@@ -15,7 +15,7 @@ does this by circumventing the [Global Interpreter Lock](https://docs.python.org
 In practice, multiprocessing offers us 2 classes; `Process` and `Pool`.
 
 #### Process
-The `Process` class manages an individual process. To spawn a process, we need to create a `Process` object and then call its start method. To run multiple processes, we will have to create multiple `Process` objects, start them and then collect their results. All the processes will be put into memory and then executed FIFO. In general, `Process` class is better if there are a few jobs to assign and if IO operations are long. As everything is manually assigned, it also gives us more control over how jobs are assigned to the various processes. This is useful if we know that certain jobs require more processing time compared to the others as the parallel processing is only as fast as the slowest process.
+The `Process` class manages an individual process. To spawn a process, we need to create a `Process` object and then call its start method. To run multiple processes, we will have to create multiple `Process` objects, start them and then collect their results. All the processes will be put into memory and then executed FIFO. In general, `Process` class is better if there are a few jobs to assign and if IO operations are long. As everything is manually assigned, it also gives us more control over how jobs are assigned to the various processes. This is useful if we know that certain jobs require more processing time compared to the others as the parallel processing is only as fast as the slowest process. Function arguments need to be [pickable](https://docs.python.org/2/library/pickle.html)
 
 In our previous example we wrote a function `scrape_finviz` that scraped data from a list of tickers. We can parallelize the scraping using the `Process` class. In our case we'll use the tickers in the S&P500 from [https://datahub.io/](https://datahub.io/)
 
@@ -94,9 +94,11 @@ if __name__ == '__main__':
     print("Time Taken: ",str(time.time()-start))
     results_df.to_csv('D:/multi.csv')
 ```
-We get similar result to `Pool`:
+We get similar results to `Pool`:
+
 ```python
 Time Taken multiprocessing : 453.84
 ```
 
 ### Main Program
+When we spawn the new processes via `Process` or `Pool`. This is because Windows does not have `fork`. To distinguish between the parent process and the child process by using `if __name__ == '__main__':`. This protects the 'entry point' of the program. For additional information, refer to the [multiprocessing guidelines](https://docs.python.org/3/library/multiprocessing.html#multiprocessing-programming).

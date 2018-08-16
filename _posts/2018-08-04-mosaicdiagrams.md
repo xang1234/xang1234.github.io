@@ -2,6 +2,8 @@
 title: "Mosaic Plots in R with ggplot2"
 date: 2018-08-04
 tags: [Visualization, Mosaic Diagrams, MariMekko, ggplot2,R]
+header:
+  image: "/images/mosaic_diagrams/improvemosaic.jpeg"
 excerpt: "Mosaic diagrams or MariMekko diagrams are an alternative to bar plots . Traditional bar plots have categories on one axis and quantities on the other. If we have 2 categories we would normally use multiple bar plots to display the data. With mosaic diagrams, the dimensions on both the x and y axis vary in order to reflect the different proportions."
 ---
 ### Introduction

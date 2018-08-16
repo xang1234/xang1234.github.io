@@ -2,6 +2,10 @@
 title: "Bubble Plots in R with Plotly"
 date: 2018-08-06
 tags: [Visualization, Bubble Plot, Plotly, ggplot2,gganimate, R]
+header:
+  image: <iframe width="600" height="550" frameborder="0" scrolling="no" src="//plot.ly/~DavidTen/7.embed"></iframe>
+
+
 excerpt: "Bubble Plots are an effective way of displaying data over and was used effectively by Hans Rosling in his famous TED Talk. Bubble plots are able to display multiple dimensions of data in an understandable manner. A bubble plot displays the relation ship between 2 continuous variables, like a scatter plot. However a third continuous variable comes into play, via the radius of each bubble. A fourth categorical variable can be added, using different colors for different categories. Given that the bubbles tend to overlap, transparency is usually increased. A fifth dimension, time, comes into play when a series of bubble plots are strung together to create an animation, producing a captivating display as in the TED talk."
 comments: true
 ---

@@ -1,23 +1,16 @@
----
-title: "Imbalanced datasets with imbalanced-learn "
-date: 2018-08-06
-tags: [Machine Learning, python, imbalanced-learn, classification]
-excerpt: "Machine learning classification algorithms tend to produce unsatisfactory results when trying to classify unbalanced datasets. The number of observations in the class of interest is very low compared to the total number of observations. Examples of applications with such datasets are customer churn identification, financial fraud identification, identification of rare diseases, detecting defects in manufacturing, etc."
-comments: true
----
 
-## Imbalanced Datasets with imbalanced-learn
+## Imbalanced Datasets with imbalanced-learn 
 
 ### 1. Introduction
-Machine learning classsification algorithms tend to produce unsatisfactory results when trying to classify unbalanced datasets. The number of observations in the class of interest is very low compared to the total number of observations. Examples of applications with such datasets are customer churn identification, financial fraud identification, identification of rare diseases, detecting defects in manufacturing, etc. Classifiers give poor results on such datasets as they favor the majority class, resulting in a high missclassification rate for the minority class of interest.
+Machine learning classsification algorithms tend to produce unsatisfactory results when trying to classify unbalanced datasets. The number of observations in the class of interest is very low compared to the total number of observations. Examples of applications with such datasets are customer churn identification, financial fraud identification, identification of rare diseases, detecting defects in manufacturing, etc. Classifiers give poor results on such datasets as they favor the majority class, resulting in a high missclassification rate for the minority class of interest. 
 
-For example, when faced with a credit card fraud dataset where only 1% of transactions are fraudulent, a classification algorithm such as logistic regression would tend to predict that all transactions are legitimate, resulting in 99% accuracy. Needless to say, such an algorithm would be of little value. In real world cases, collecting more data might be an option and should be explored if possible.
+For example, when faced with a credit card fraud dataset where only 1% of transactions are fraudulent, a classification algorithm such as logistic regression would tend to predict that all transactions are legitimate, resulting in 99% accuracy. Needless to say, such an algorithm would be of little value. In real world cases, collecting more data might be an option and should be explored if possible. 
 
 To improve the prediction, our machine learning algorithms would require a roughly equal number of observations from each class. This new dataset can be constructed by resampling our observations. [Imbalanced learn](https://github.com/scikit-learn-contrib/imbalanced-learn) is a [scikit-learn](http://scikit-learn.org/stable/) compatible package which implements various resampling methods to tackle imbalanced datasets. In this post we explore the usage of imbalanced-learn and the various resampling techniques that are implemented within the package.  
 
 
 ### 2. Dataset
-For our study we will use the [Credit Card Fraud Detection](https://www.kaggle.com/mlg-ulb/creditcardfraud) dataset that has been made available by the [ULB Machine Learning Group](http://mlg.ulb.ac.be) on Kaggle. The dataset contains almost 285k observations. The available features are `Time`, anonymous features `V1` to `V28`(which are the results of PCA transformation) and `Amount` while the classification is given by `class`. Only 0.17% of the transactions are fraudulent.
+For our study we will use the [Credit Card Fraud Detection](https://www.kaggle.com/mlg-ulb/creditcardfraud) dataset that has been made available by the [ULB Machine Learning Group](http://mlg.ulb.ac.be) on Kaggle. The dataset contains almost 285k observations. The available features are `Time`, anonymous features `V1` to `V28`(which are the results of PCA transformation) and `Amount` while the classification is given by `class`. Only 0.17% of the transactions are fraudulent. 
 
 
 ```python
@@ -208,7 +201,7 @@ Of particular note, the `Time` and `Amount` are skewed:
 
 
 ```python
-import seaborn as sns
+import seaborn as sns 
 import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots(1, 2, figsize=(18,4))
@@ -231,10 +224,10 @@ plt.show()
 
     C:\Users\david\AppData\Local\Continuum\Anaconda3\lib\site-packages\matplotlib\axes\_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
       warnings.warn("The 'normed' kwarg is deprecated, and has been "
+    
 
 
-
-![png]({{"/images/imbalanced/output_4_1.png"}})
+![png](output_4_1.png)
 
 
 The transaction amount is heaviliy skewed towards small transactions and should be scaled. One option would be to use a log transformation on the data set. The transaction time seems to follow a night and day pattern with the number of transactions going down at night. As such I choose not to scale the `time` variable
@@ -261,10 +254,10 @@ plt.show()
 
     C:\Users\david\AppData\Local\Continuum\Anaconda3\lib\site-packages\matplotlib\axes\_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
       warnings.warn("The 'normed' kwarg is deprecated, and has been "
+    
 
 
-
-![png]({{"/images/imbalanced/output_6_1.png"}})
+![png](output_6_1.png)
 
 
 
@@ -276,15 +269,15 @@ plt.show()
 
     C:\Users\david\AppData\Local\Continuum\Anaconda3\lib\site-packages\matplotlib\axes\_axes.py:6462: UserWarning: The 'normed' kwarg is deprecated, and has been replaced by the 'density' kwarg.
       warnings.warn("The 'normed' kwarg is deprecated, and has been "
+    
 
 
+![png](output_7_1.png)
 
-![png]({{"/images/imbalanced/output_7_1.png"}})
 
+### 4. Splitting the data into training and validation subsets 
 
-### 4. Splitting the data into training and validation subsets
-
-We split the data into the training and validation datasets cross-validation with a 70:30 ratio. This is a simple hold out method. Note that the training should be done on the rebalanced/resampled training dataset while the **evaluation should be done one the original holdout validation dataset.**
+We split the data into the training and validation datasets cross-validation with a 70:30 ratio. This is a simple hold out method. Note that the training should be done on the rebalanced/resampled training dataset while the **evaluation should be done one the original holdout validation dataset.** 
 
 
 ```python
@@ -295,7 +288,7 @@ x=df.drop(['Class'], axis=1)
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3, stratify=y, random_state=0)
 ```
 
-### 5. Training on an unbalanced dataset
+### 5. Training on an unbalanced dataset 
 
 Let us try to naively train bagging (decision tree) and random forest classifiers to our dataset. These 2 classifiers are chose for illustration purposes only and we will use `sklearn` default settings. The focus is not to find the best classifier and tune it, but to understand how to rebalanced skewed datasets. For our metric we will look at the confusion matrix of the test dataset.
 
@@ -312,19 +305,19 @@ def fit_model(x_train,x_test,y_train,y_test):
                  "Bagging-Decision Tree":BaggingClassifier(),}
     fig, ax = plt.subplots(1,2,figsize=(12,6))
     i=0
-
+ 
     for key, classifier in classifiers.items():
         classifier.fit(x_train, y_train)
         y_pred=classifier.predict(x_test)
         cm=confusion_matrix(y_test, y_pred)
-        sns.heatmap(cm, ax=ax[i], annot=True,
+        sns.heatmap(cm, ax=ax[i], annot=True, 
                     cmap=plt.cm.Blues,
                    xticklabels=['No Fraud', 'Fraud'],
                    yticklabels=['No Fraud', 'Fraud']).set_title(key)
 
         i+=1
     plt.show()
-
+        
 ```
 
 
@@ -333,10 +326,10 @@ fit_model(x_train,x_test,y_train,y_test)
 ```
 
 
-![png]({{"/images/imbalanced/output_12_0.png"}})
+![png](output_12_0.png)
 
 
-We observe that decision tree type classifiers are able to do a decent job to separate the `Fraud` and `No Fraud` classes although the classes are heavily imbalanced. This is usually not the case for imbalanced classes; the classifier typically **classifies everything as belonging to the majority class.**
+We observe that decision tree type classifiers are able to do a decent job to separate the `Fraud` and `No Fraud` classes although the classes are heavily imbalanced. This is usually not the case for imbalanced classes; the classifier typically **classifies everything as belonging to the majority class.** 
 
 ### 5. Various techniques for resampling the training dataset
 
@@ -348,10 +341,10 @@ Here we explore the various options to rebalance the training dataset. The metho
 
 #### 5.1 Undersampling the majority class
 
-There are various algorithms implemented in imbalanced-learn that supports undersampling the majority class. They can be divided into generative and selective algorithms; generative algos try to summarize the majority class and then the samples are drawn from this generated data instead of the actual majority class observations. On the other hand, selective algorithms use various heuristics to select (or reject) samples to be drawn from the majority class. There are many undersampling algorithms and we will not run through all of them.
+There are various algorithms implemented in imbalanced-learn that supports undersampling the majority class. They can be divided into generative and selective algorithms; generative algos try to summarize the majority class and then the samples are drawn from this generated data instead of the actual majority class observations. On the other hand, selective algorithms use various heuristics to select (or reject) samples to be drawn from the majority class. There are many undersampling algorithms and we will not run through all of them. 
 
 ##### Undersampling with Random Under Sampler
-The simplest selective under-sampler is the random under sampler **`RandomUnderSampler`**; we select the majority class randomly. Bootstrapping is possible by setting the parameter `replacement` to `True`.
+The simplest selective under-sampler is the random under sampler **`RandomUnderSampler`**; we select the majority class randomly. Bootstrapping is possible by setting the parameter `replacement` to `True`. 
 
 
 ```python
@@ -360,7 +353,7 @@ rus = RandomUnderSampler(random_state=0)
 x_rus, y_rus = rus.fit_sample(x_train, y_train)
 ```
 
-We also define the function `plot_dim` to display the data after t-SNE, PCA and Truncated SVD transformations.
+We also define the function `plot_dim` to display the data after t-SNE, PCA and Truncated SVD transformations. 
 
 
 ```python
@@ -388,7 +381,7 @@ def plot_dim(x,y):
     X_reduced_svd = TruncatedSVD(n_components=2, algorithm='randomized', random_state=10).fit_transform(x)
     t1 = time.time()
     print("Truncated SVD took {:.2} s".format(t1 - t0))
-
+    
     f, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(24,6))
     # labels = ['No Fraud', 'Fraud']
     f.suptitle('Clusters using Dimensionality Reduction', fontsize=14)
@@ -411,7 +404,7 @@ def plot_dim(x,y):
 
 
     # PCA scatter plot
-    ax2.scatter(X_reduced_pca[:,0], X_reduced_pca[:,1], s=4, c=(y == 0),
+    ax2.scatter(X_reduced_pca[:,0], X_reduced_pca[:,1], s=4, c=(y == 0), 
                 cmap='coolwarm', label='No Fraud', linewidths=2)
     ax2.scatter(X_reduced_pca[:,0], X_reduced_pca[:,1], s=4, c=(y == 1),
                 cmap='coolwarm', label='Fraud', linewidths=2)
@@ -424,7 +417,7 @@ def plot_dim(x,y):
     # TruncatedSVD scatter plot
     ax3.scatter(X_reduced_svd[:,0], X_reduced_svd[:,1], s=4, c=(y == 0),
                 cmap='coolwarm', label='No Fraud', linewidths=2)
-    ax3.scatter(X_reduced_svd[:,0], X_reduced_svd[:,1], s=4, c=(y == 1),
+    ax3.scatter(X_reduced_svd[:,0], X_reduced_svd[:,1], s=4, c=(y == 1), 
                 cmap='coolwarm', label='Fraud', linewidths=2)
     ax3.set_title('Truncated SVD', fontsize=14)
 
@@ -443,10 +436,10 @@ plot_dim(x_rus,y_rus)
     T-SNE took 1.7e+01 s
     PCA took 0.003 s
     Truncated SVD took 0.002 s
+    
 
 
-
-![png]({{"/images/imbalanced/output_18_1.png"}})
+![png](output_18_1.png)
 
 
 When we look at the data obtained from undersampling using dimensionality reduction, the `No Fraud` and `Fraud` classes appear separable. This is in contrast to the original imbalanced datasets where there are very few `Fraud` cases and they do not appear to be easily separable
@@ -460,13 +453,13 @@ plot_dim(x_plot,y_plot)
     T-SNE took 2.7e+03 s
     PCA took 0.24 s
     Truncated SVD took 0.17 s
+    
 
 
+![png](output_20_1.png)
 
-![png]({{"/images/imbalanced/output_20_0.png"}})
 
-
-Now that we have the used Random Undersampling to replaced the classes, we use a classifier to see how the model would perform when trained on a rebalanced dataset.
+Now that we have the used Random Undersampling to replaced the classes, we use a classifier to see how the model would perform when trained on a rebalanced dataset. 
 
 
 ```python
@@ -474,7 +467,7 @@ fit_model(x_rus,x_test,y_rus,y_test)
 ```
 
 
-![png]({{"/images/imbalanced/output_22_0.png"}})
+![png](output_22_0.png)
 
 
 Although more of the `Fraud` classes are detected, this comes at an elevated False Positive rate - we will label more than 2k **No Fraud** cases as **Fraud**. When undersampling the majority or `No Fraud` class. It appears that we have oversimplified it, causing classification errors.  
@@ -501,13 +494,13 @@ plot_dim(x_tomekl_plot,y_tomekl_plot)
     T-SNE took 3.6e+02 s
     PCA took 0.028 s
     Truncated SVD took 0.025 s
+    
 
 
+![png](output_26_1.png)
 
-![png]({{"/images/imbalanced/output_26_1.png"}})
 
-
-Even after running `TomekLink`we observe that the dataset is similar to the initial imbalanced dataset. Thus it is unsurprising to get similar classification results as shown below.
+Even after running `TomekLink`we observe that the dataset is similar to the initial imbalanced dataset. Thus it is unsurprising to get similar classification results as shown below. 
 
 
 ```python
@@ -515,7 +508,7 @@ fit_model(x_tomekl,x_test,y_tomekl,y_test)
 ```
 
 
-![png]({{"/images/imbalanced/output_28_0.png"}})
+![png](output_28_0.png)
 
 
 #### 5.2 Oversample the minority class
@@ -523,7 +516,7 @@ fit_model(x_tomekl,x_test,y_tomekl,y_test)
 Instead of reducing the majority class. We can choose to oversample the minority class instead to rebalance the dataset.
 
 ##### Random Over Sampling
-In Random Oversampling, the we favor the minority class when sampling to rebalance the dataset.
+In Random Oversampling, the we favor the minority class when sampling to rebalance the dataset. 
 
 
 ```python
@@ -541,13 +534,13 @@ plot_dim(x_ros_plot,y_ros_plot)
     T-SNE took 3.2e+02 s
     PCA took 0.038 s
     Truncated SVD took 0.025 s
+    
 
 
+![png](output_31_1.png)
 
-![png]({{"/images/imbalanced/output_31_1.png"}})
 
-
-Random over sampling gives us a more separable dataset. We obtained slightly better results for the Random Forest classifier.
+Random over sampling gives us a more separable dataset. We obtained slightly better results for the Random Forest classifier. 
 
 
 ```python
@@ -555,7 +548,7 @@ fit_model(x_ros,x_test,y_ros,y_test)
 ```
 
 
-![png]({{"/images/imbalanced/output_33_0.png"}})
+![png](output_33_0.png)
 
 
 ##### SMOTE
@@ -564,7 +557,7 @@ SMOTE or Synthetic Minority Over-Sampling Technique creates additional samples o
 
 
 ```python
-from imblearn.over_sampling import SMOTE
+from imblearn.over_sampling import SMOTE 
 sm = SMOTE(random_state=0)
 x_smote, y_smote = sm.fit_sample(x_train, y_train)
 ```
@@ -578,10 +571,10 @@ plot_dim(x_smote_plot,y_smote_plot)
     T-SNE took 3.3e+02 s
     PCA took 0.033 s
     Truncated SVD took 0.023 s
+    
 
 
-
-![png]({{"/images/imbalanced/output_36_1.png"}})
+![png](output_36_1.png)
 
 
 We observe that the resulting dataset is less separable compared to the random over sampled dataset, especially after running `t-SNE`.
@@ -592,12 +585,12 @@ fit_model(x_smote,x_test,y_smote,y_test)
 ```
 
 
-![png]({{"/images/imbalanced/output_38_0.png"}})
+![png](output_38_0.png)
 
 
 #### 5.3 Combine oversampling and undersampling
 
-It is also possible to combine both over sampling and undersampling to rebalance the datasets.
+It is also possible to combine both over sampling and undersampling to rebalance the datasets. 
 
 ##### SMOTE ENN
 
@@ -605,7 +598,7 @@ SMOTE ENN combines SMOTE (over sampling) and ENN or Edited Nearest Neighbours (U
 
 
 ```python
-from imblearn.combine import SMOTEENN
+from imblearn.combine import SMOTEENN 
 enn = SMOTEENN(random_state=0)
 x_enn, y_enn = enn.fit_sample(x_train, y_train)
 ```
@@ -619,10 +612,10 @@ plot_dim(x_enn_plot,y_enn_plot)
     T-SNE took 3.3e+02 s
     PCA took 0.034 s
     Truncated SVD took 0.023 s
+    
 
 
-
-![png]({{"/images/imbalanced/output_41_1.png"}})
+![png](output_41_1.png)
 
 
 
@@ -631,17 +624,17 @@ fit_model(x_enn,x_test,y_enn,y_test)
 ```
 
 
-![png]({{"/images/imbalanced/output_42_0.png"}})
+![png](output_42_0.png)
 
 
-##### SMOTE TOMEK
+##### SMOTE TOMEK 
 
 SMOTE TOMEK combines SMOTE (over sampling) and Tomek links (Under Sampling)
 
 
 
 ```python
-from imblearn.combine import SMOTETomek
+from imblearn.combine import SMOTETomek 
 stomek = SMOTETomek (random_state=0)
 x_stomek, y_stomek = stomek.fit_sample(x_train, y_train)
 ```
@@ -655,10 +648,11 @@ plot_dim(x_stomek_plot,y_stomek_plot)
     T-SNE took 3.2e+02 s
     PCA took 0.036 s
     Truncated SVD took 0.024 s
+    
 
 
+![png](output_45_1.png)
 
-![png]({{"/images/imbalanced/output_45_1.png"}})
 
 
 ```python
@@ -666,19 +660,20 @@ fit_model(x_stomek,x_test,y_stomek,y_test)
 ```
 
 
-![png]({{"/images/imbalanced/output_46_0.png"}})
+![png](output_46_0.png)
 
-Neither SMOTE ENN nor SMOTE Tomek are able to improve the classification results.
 
-#### 5.4 Ensemble Balancing
+Neither SMOTE ENN nor SMOTE Tomek are able to improve the classification results. 
+
+#### 5.4 Ensemble Balancing 
 
 ##### Balanced Bagging Classifier
 
-This is essentially a bagging classifier with additional balancing. We try it out with the default *Decision Tree* and *Support Vector Machine* classifier.
+This is essentially a bagging classifier with additional balancing. We try it out with the default *Decision Tree* and *Support Vector Machine* classifier. 
 
 
 ```python
-from imblearn.ensemble import BalancedBaggingClassifier
+from imblearn.ensemble import BalancedBaggingClassifier 
 bb=BalancedBaggingClassifier(random_state=0, n_jobs=3)
 bb.fit(x_train, y_train)
 ```
@@ -697,7 +692,7 @@ bb.fit(x_train, y_train)
 ```python
 y_pred=bb.predict(x_test)
 cm=confusion_matrix(y_test, y_pred)
-sns.heatmap(cm, annot=True,
+sns.heatmap(cm, annot=True, 
                     cmap=plt.cm.Blues,
                    xticklabels=['No Fraud', 'Fraud'],
                    yticklabels=['No Fraud', 'Fraud']).set_title('Balanced Bagging')
@@ -711,7 +706,8 @@ sns.heatmap(cm, annot=True,
 
 
 
-![png]({{"/images/imbalanced/output_50_1.png"}})
+![png](output_50_1.png)
+
 
 
 ```python
@@ -740,7 +736,7 @@ bbsvm.fit(x_train, y_train)
 ```python
 y_pred=bbsvm.predict(x_test)
 cm=confusion_matrix(y_test, y_pred)
-sns.heatmap(cm, annot=True,
+sns.heatmap(cm, annot=True, 
                     cmap=plt.cm.Blues,
                    xticklabels=['No Fraud', 'Fraud'],
                    yticklabels=['No Fraud', 'Fraud']).set_title('Balanced Bagging - SVM')
@@ -754,7 +750,8 @@ sns.heatmap(cm, annot=True,
 
 
 
-![png]({{"/images/imbalanced/output_52_1.png"}})
+![png](output_52_1.png)
+
 
 The Balanced Bagging SVM classifier is able to detect the highest amount of `Fraud`, at the cost of high false positives for `No Fraud`
 
@@ -762,4 +759,4 @@ The Balanced Bagging SVM classifier is able to detect the highest amount of `Fra
 
 We have run through the various options in `imbalanced-learn` to rebalance and imbalanced dataset. However the original imbalanced dataset can already be classified relatively well. As such it is more difficult to illustrate the full benefits of rebalancing the dataset.
 
-This post was written as a Jupyter Notebook. Click [here](https://github.com/xang1234/xang1234.github.io/tree/master/_posts/ipython/imbalanced-learn.ipynb) to view it.
+This post was written as a Jupyter Notebook. Click [here]() to view it

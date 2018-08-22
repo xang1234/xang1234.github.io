@@ -2,7 +2,7 @@
 title: "Bubble Plots to Visualize Singapore Private Property"
 date: 2018-08-21
 tags: [Visualization, Property, Leaflet, R]
-excerpt: ""
+excerpt: "Having seen choropleths and bubble plots, we now examine how to display bubble plots on maps. In particular, we would like to display the location of private properties in Singapore. The *Markers* vignette for R leaflet gives a quick introduction on how to display markers on maps."
 comments: true
 ---
 ### Introduction
@@ -11,7 +11,7 @@ Having seen [choropleths]({{site.url }}{{site.baseurl }}/choropleth) and [bubble
 ### Data
 Our [dataset]({{site.url }}{{site.baseurl }}/data/), `Private2017.csv` contains summarized property transaction data. To correctly display property in such, we will need accurate geolocation data. Fortunately OneMap provides excellent geolocation data, which can accessed via their [API](https://docs.onemap.sg/).
 
-<img src="{{site.url }}{{site.baseurl }}/images/bubble-plot/data.JPG" alt="">
+<img src="{{site.url }}{{site.baseurl }}/images/bubbleproperty/data.JPG" alt="">
 
 We use the postcode from our data to systematically retrieve the longitude and latitude of the various private properties that were sold in 2017. As we have the individual postcodes, we are able to distinguish between blocks within a project. OneMap limits us to 250 API calls per minute.
 
@@ -159,7 +159,5 @@ m <- leaflet(property) %>%
 m
 ```
 
-<div id="htmlwidget-4e60e3328ae633f3a299" style="width:750px;height:400px;" class="leaflet html-widget"></div>
+<div id="htmlwidget-4e60e3328ae633f3a299" style="width:900px;height:600px;" class="leaflet html-widget"></div>
 {% include bubbleprop.html %}
-
-### Shiny and FlexDashBoard

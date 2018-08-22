@@ -99,10 +99,8 @@ if __name__ == '__main__':
 ```
 We can also calculate the nearest private properties with slight modification to the codes, and this will require almost 41M calculations.
 
-### Leaflet and bubble Plots
-Previously we used the `addPolygons` function in leaflet to produce choropleths. To add bubbles in specific locations, we use the `addCircles` function.
-
-
+### Leaflet and Bubble Plots
+Previously we used the `addPolygons` function in leaflet to produce choropleths. To add bubbles in specific locations, we use the `addCircles` function. The parameters `lng` and `lat` refer to the longitude and latitude. The `radius` determines the size of the bubble, which we set to be proportional to the square root of the average price. We can also display a pop up when the user's mouse hovers over the bubble. In our case we display the project name, average price, nearest MRT and distance to MRT. A bit of html is required to separate the attributes as `\n` does not work here. We use the `htmltools` package to convert to HTML.
 
 ```r
 library(tidyverse)

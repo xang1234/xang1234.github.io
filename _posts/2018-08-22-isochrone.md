@@ -8,13 +8,13 @@ comments: true
 ### Introduction
 [Isochrone Maps](https://en.wikipedia.org/wiki/Isochrone_map) depict areas of equal travel time from a certain point of departure. They are particularly useful for urban transport and hydrology. For example we can easily visualize how long it would take to travel to a point of interest, like to airports or central business districts. If we are interested in buying or renting property then it would be helpful to visualize how well of poorly connected the property is. Typically we would display multiple time intervals to depict successively larger areas that can be reached as the travel time increases.
 
-An example of such a visualization for Singapore's public transport is [Shan Yang's](https://github.com/yinshanyang) [isochrone](https://isochrone.swarm.is) which can display isochrones for various addresses that the user can key in the search bar. Previously, [mapzen](https://mapzen.com/) provided an API for isochrones but unfortunately they went out of business.
+An example of such a visualization for Singapore's public transport is [Shan Yang's](https://github.com/yinshanyang) [isochrone](https://isochrone.swarm.is) which can display isochrones for various addresses that the user can key in the search bar. Previously, [mapzen](https://mapzen.com/) provided an API for isochrones but unfortunately they went out of business. Fret not, it can still be built from scratch.
 
 <img src="{{site.url }}{{site.baseurl }}/images/isochrone/isochrone.JPG" alt="">
 
 
 ### GTFS
-To create an public transport isochrone we would need information about the various modes of public transport, the schedule, location of the stops, etc. [General Transit Feed Specification](https://en.wikipedia.org/wiki/General_Transit_Feed_Specification) or GTFS is a standardized format for public transportation schedules created by Google. GTFS is typically used as input to plan multi stop journeys on public transport. 6 compulsory tables are :
+To create an public transport isochrone we would need information about the various modes of public transport, the schedule, location of the stops, etc. [General Transit Feed Specification](https://en.wikipedia.org/wiki/General_Transit_Feed_Specification) or GTFS is a standardized format for public transportation schedules created by Google. GTFS is typically used as input to plan multi stop journeys on public transport. The 6 compulsory tables are :
 
 1. agency - transit agency
 2. routes - distinct routes. In Singapore this could be a bus number, or an MRT line , e.g. Downtown Line
@@ -107,25 +107,26 @@ In the interactive leaflet output below we can see Changi Airport is mainly conn
 <div id="htmlwidget-ab4bcdcb0d6decbe636c" style="width:100%;height:400px;" class="leaflet html-widget"></div>
 {% include changi.html %}
 
-We can also take a look at how well connected the major universities ([NUS](http://www.nus.edu.sg/), [NTU](http://www.ntu.edu.sg/Pages/home.aspx) and [SMU](https://www.smu.edu.sg/) ) in Singapore are.
+
+We can also take a look at how well connected the major universities ([NUS](http://www.nus.edu.sg/), [NTU](http://www.ntu.edu.sg/Pages/home.aspx) and [SMU](https://www.smu.edu.sg/) ) in Singapore are:
 
 <figure>
   <img src="{{site.url }}{{site.baseurl }}/images/isochrone/NUS.JPG" alt="">
   <figcaption>NUS</figcaption>
 </figure>
-
 <figure>
   <img src="{{site.url }}{{site.baseurl }}/images/isochrone/NTU.JPG" alt="">
   <figcaption>NTU</figcaption>
 </figure>
-
 <figure>
   <img src="{{site.url }}{{site.baseurl }}/images/isochrone/SMU.JPG" alt="">
   <figcaption>SMU</figcaption>
 </figure>
 
-The isochrone allows us to visualize how connected a place is via public transport and depends on the parameters sent to OTP. As we have the geojson file we can perform calculations such as determining the area covered, overlaps, etc. By modifying the GTFS input we can see the impact of adding new transport routes or the impact of disruptions when certain routes are cut off.
+SMU being in the CBD is very well connected whereas poor NTU students are really cut off, being located in the West of Singapore without an MRT station.
 
-Note that the settings might still have some errors as barriers to walking are not taken into account. For example, it does not recognize bodies of water, and actually shows that a commuter can walk on the MacRitchie reservoir.
+The isochrone allows us to visualize how connected a place is via public transport and depends on the parameters sent to OTP. As we have the geojson file we can perform calculations such as determining the area covered, overlaps, etc. Since we built the isochrone from the GTFS, we can see the impact of adding new transport routes or the impact of disruptions when certain routes are cut off by modifying the transit rules. We can also set up an OpenTripPlanner server and allow the user to query locations with different trip parameters.
+
+Note that the settings might still have some errors as barriers to walking are not taken into account. For example, it does not recognize bodies of water, and actually shows that a commuter can walk on the MacRitchie reservoir! 
 
 <img src="{{site.url }}{{site.baseurl }}/images/isochrone/water.JPG" alt="">

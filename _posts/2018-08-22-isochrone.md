@@ -1,7 +1,7 @@
 ---
-title: "Isochrone Maps with R and Open Trip Planner"
+title: "Isochrone Maps with R and OpenTripPlanner"
 date: 2018-08-22
-tags: [Visualization, Isochrone, Leaflet, R , Open Trip Planner]
+tags: [Visualization, Isochrone, Leaflet, R , OpenTripPlanner]
 excerpt: "Isochrone Maps depict areas of equal travel time from a certain point of departure. They are particularly useful for urban transport and hydrology. For example we can easily visualize how long it would take to travel to a point of interest, like to airports or central business districts. If we are interested in buying or renting property then it would be helpful to visualize how well of poorly connected the property is. Typically we would display multiple time intervals to depict successively larger areas that can be reached as the travel time increases."
 comments: true
 ---
@@ -32,11 +32,7 @@ Singapore's transport agencies to not provide data directly in GTFS format but i
 [OpenTripPlanner](http://docs.opentripplanner.org/en/latest/) or OTP is an open source trip planner which requires GTFS data (in a .zip file) and [Open Street Map](https://www.openstreetmap.org/) data of the geographical area of interest, typically in PBF format as input. It is available as a runnable JAR file. Marcus Young has a very good [tutorial](https://github.com/marcusyoung/otp-tutorial/blob/master/intro-otp.Rmd
 ) on how to get the OTP server up and running, usually on http://localhost:8080. While OTP will allow us to plan trips, it can also calculate isochrones based on the GTFS data available to it.  
 
-This can be done by sending queries to the server, such as:
-
-http://localhost:8080/otp/routers/current/isochrone?fromPlace=53.3627432,-2.2729342&mode=WALK,TRANSIT&date=07-10-2017&time=08:00am&maxWalkDistance=1600&walkReluctance=5&minTransferTime=600&cutoffSec=900&cutoffSec=1800&cutoffSec=2700&cutoffSec=3600&cutoffSec=4500&cutoffSec=100000
-
-This is very tedious and queries can be sent via R or python instead while the server is up and running. the function `get_geojson` below will request the isochrone for a certain latitude and longitude. We also need to give OTP certain parameters for the query.
+Queries can be sent to the server via R or python while the server is up and running. the function `get_geojson` below will request the isochrone for a certain latitude and longitude. We also need to give OTP certain parameters for the query.
 - `cutoffSec` is the travel time that we are interested in (multiple cutoffs can be requested)
 - `mode` is the mode of transport
 - `maxWalkDistance` gives the maximum that distance that we expect the user to walk.
@@ -71,10 +67,12 @@ In return we get a .geojson which we can then display.
 
 ### Isochrone with R Leaflet
 
-Now that we have a geojson file, we can overlay it onto the map of Singapore with leaflet. For example we get the isochrone for Changi Airport Terminal 1.
+Now that we have a geojson file, we can overlay it onto the map of Singapore with leaflet. For example we get the isochrone for **Changi Airport Terminal 1**. The latitude and longitude can be found using the OneMap API (refer to this [post]({{site.url }}{{site.baseurl }}/bubbleproperty)
 
 ```r
-get_geojson(1.36173580440684,103.990348825503,"Changi-Terminal-1")
+get_geojson(1.36173580440684,
+  103.990348825503,
+  "Changi-Terminal-1")
 
 ```
 We can then display the isochrone using leaflet. The .geojson file can be read in as an `sp` object using the `geojsonio` package function `geojson_read`.
@@ -104,9 +102,30 @@ m<-leaflet(iso) %>%
 m
 ```
 
+In the interactive leaflet output below we can see Changi Airport is mainly connected via the East-West line and it would take a traveler an hour to reach the CBD.  
+
 <div id="htmlwidget-ab4bcdcb0d6decbe636c" style="width:100%;height:400px;" class="leaflet html-widget"></div>
 {% include changi.html %}
 
-The isochrone allows us to visualize how connected a place is via public transport and depends on the parameters sent to OTP. Note that the settings might still have some errors as barriers to walking are not taken into account. For example, it does not recognize bodies of water, and actually shows that a commuter can walk on the MacRitchie reservoir.
+We can also take a look at how well connected the major universities ([NUS](http://www.nus.edu.sg/), [NTU](http://www.ntu.edu.sg/Pages/home.aspx) and [SMU](https://www.smu.edu.sg/) ) in Singapore are.
+
+<figure>
+  <img src="{{site.url }}{{site.baseurl }}/images/isochrone/NUS.JPG" alt="">
+  <figcaption>NUS</figcaption>
+</figure>
+
+<figure>
+  <img src="{{site.url }}{{site.baseurl }}/images/isochrone/NTU.JPG" alt="">
+  <figcaption>NTU</figcaption>
+</figure>
+
+<figure>
+  <img src="{{site.url }}{{site.baseurl }}/images/isochrone/SMU.JPG" alt="">
+  <figcaption>SMU</figcaption>
+</figure>
+
+The isochrone allows us to visualize how connected a place is via public transport and depends on the parameters sent to OTP. As we have the geojson file we can perform calculations such as determining the area covered, overlaps, etc. By modifying the GTFS input we can see the impact of adding new transport routes or the impact of disruptions when certain routes are cut off.
+
+Note that the settings might still have some errors as barriers to walking are not taken into account. For example, it does not recognize bodies of water, and actually shows that a commuter can walk on the MacRitchie reservoir.
 
 <img src="{{site.url }}{{site.baseurl }}/images/isochrone/water.JPG" alt="">

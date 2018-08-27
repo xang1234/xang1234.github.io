@@ -108,12 +108,13 @@ Finally we get the `pop_final` dataframe:
 
 To create a pyramid with ggplot we filter the dataset for `2017` and `Planning Area == PUNGGOL`.
 
-```{r}
+```r
 pyramid<-pop_final %>%
   filter(`Planning Area` =='PUNGGOL', Year==2017)
 ```
 Since we have already assigned negative values for males. We just have to assign the correct aesthetics within `aes`. To remove spacing between bars, we set the parameter `width=1` within the `geom_bar` function.
-```{r}
+
+```r
 library(ggplot2)
 ggplot(pyramid, aes(x=Age,fill=Gender,y=Percent))+
   geom_bar(stat="identity",width=1,color="black")+
@@ -139,4 +140,4 @@ m<-ggplot(geo, aes(x=Age,fill=Gender,y=Percent))+
   facet_geo(vars(name),grid = sggrid)
 m
 ```
-<img src="{{site.url }}{{site.baseurl }}/images/pyramidgeofacet/singapore.png" alt="" width="780">
+<img src="{{site.url }}{{site.baseurl }}/images/pyramidgeofacet/singapore.png" alt="" style="width:750px;">

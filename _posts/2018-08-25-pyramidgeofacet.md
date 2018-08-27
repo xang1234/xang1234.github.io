@@ -2,7 +2,7 @@
 title: "Faceted Population Pyramids"
 date: 2018-08-25
 tags: [Visualization, ggplot2, population pyramid, geofacet, R]
-excerpt: ""
+excerpt: "Population Pyramids are a specific type of bar chart that allows us to easily visualize the age and sex distribution of the population. A population pyramid allows us to clearly distinguish between countries or regions with high fertility (wide pyramid base) and low fertility (narrow pyramid base)."
 comments: true
 ---
 ### Introduction
@@ -140,4 +140,4 @@ m<-ggplot(geo, aes(x=Age,fill=Gender,y=Percent))+
   facet_geo(vars(name),grid = sggrid)
 m
 ```
-<img src="{{site.url }}{{site.baseurl }}/images/pyramidgeofacet/singapore.png" alt="" style="width:750px;">
+<img style="width:900px;height:600px;" src="{{site.url }}{{site.baseurl }}/images/pyramidgeofacet/singapore.png" alt="" >

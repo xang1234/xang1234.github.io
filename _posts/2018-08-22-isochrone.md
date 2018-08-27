@@ -29,8 +29,7 @@ Singapore's transport agencies to not provide data directly in GTFS format but i
 
 ### OpenTripPlanner
 
-[OpenTripPlanner](http://docs.opentripplanner.org/en/latest/) or OTP is an open source trip planner which requires GTFS data (in a .zip file) and [Open Street Map](https://www.openstreetmap.org/) data of the geographical area of interest, typically in PBF format as input. It is available as a runnable JAR file. Marcus Young has a very good [tutorial](https://github.com/marcusyoung/otp-tutorial/blob/master/intro-otp.Rmd
-) on how to get the OTP server up and running, usually on http://localhost:8080. While OTP will allow us to plan trips, it can also calculate isochrones based on the GTFS data available to it.  
+[OpenTripPlanner](http://docs.opentripplanner.org/en/latest/) or OTP is an open source trip planner which requires GTFS data (in a .zip file) and [Open Street Map](https://www.openstreetmap.org/) data of the geographical area of interest, typically in PBF format as input. It is available as a runnable JAR file. Marcus Young has a very good [tutorial](https://github.com/marcusyoung/otp-tutorial/blob/master/intro-otp.Rmd) on how to get the OTP server up and running, usually on http://localhost:8080. While OTP will allow us to plan trips, it can also calculate isochrones based on the GTFS data available to it.  
 
 Queries can be sent to the server via R or python while the server is up and running. the function `get_geojson` below will request the isochrone for a certain latitude and longitude. We also need to give OTP certain parameters for the query.
 - `cutoffSec` is the travel time that we are interested in (multiple cutoffs can be requested)
@@ -127,6 +126,6 @@ SMU being in the CBD is very well connected whereas poor NTU students are really
 
 The isochrone allows us to visualize how connected a place is via public transport and depends on the parameters sent to OTP. As we have the geojson file we can perform calculations such as determining the area covered, overlaps, etc. Since we built the isochrone from the GTFS, we can see the impact of adding new transport routes or the impact of disruptions when certain routes are cut off by modifying the transit rules. We can also set up an OpenTripPlanner server and allow the user to query locations with different trip parameters.
 
-Note that the settings might still have some errors as barriers to walking are not taken into account. For example, it does not recognize bodies of water, and actually shows that a commuter can walk on the MacRitchie reservoir! 
+Note that the settings might still have some errors as barriers to walking are not taken into account. For example, it does not recognize bodies of water, and actually shows that a commuter can walk on the MacRitchie reservoir!
 
 <img src="{{site.url }}{{site.baseurl }}/images/isochrone/water.JPG" alt="">

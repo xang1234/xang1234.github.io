@@ -140,4 +140,4 @@ m<-ggplot(geo, aes(x=Age,fill=Gender,y=Percent))+
   facet_geo(vars(name),grid = sggrid)
 m
 ```
-<img style="width:900px;height:600px;" src="{{site.url }}{{site.baseurl }}/images/pyramidgeofacet/singapore.png" alt="" >
+![](/images/pyramidgeofacet/singapore.jpg){: .width-big}

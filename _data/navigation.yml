@@ -6,6 +6,8 @@ main:
     url: /machine-learning/
   - title: "Visualizations"
     url: /visualizations/
+  - title: "Projects"
+    url: /splash-page/    
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"

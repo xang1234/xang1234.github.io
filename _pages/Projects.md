@@ -10,10 +10,9 @@ header:
   cta_label: "Github"
   cta_url: "https://github.com/xang1234/"
 intro:
-  - excerpt: 'Projects That I have worked on`'
+  - excerpt: 'Projects That I have worked on'
 feature_row:
   - image_path: /images/splash/migrants.png
-    image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
     alt: "placeholder image 1"
     title: "Why did the Migrant Cross the Road"
     excerpt: "Visualizing Worldwide Immigration Flows and Factors"
@@ -31,6 +30,4 @@ feature_row:
 
 ---
 
-{% include feature_row id="intro" type="center" %}
-
-{% include feature_row %}
+{% include feature_row id="intro" type="left" %}

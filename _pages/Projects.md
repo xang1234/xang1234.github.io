@@ -19,6 +19,7 @@ feature_row:
     url: "https://wiki.smu.edu.sg/1617t3isss608g1/ISSS608_2016-17_T3_Group5_Immigration_Application"
     btn_label: "Read More"
     btn_class: "btn--primary"
+feature_row2:    
   - image_path: /images/splash/map.JPG
     alt: "placeholder image 2"
     title: "Malaysian General Elections 2018"
@@ -33,3 +34,5 @@ feature_row:
 {% include feature_row id="intro" type="center" %}
 
 {% include feature_row % type="left"}
+
+{% include feature_row id="feature_row2" type="left" %}

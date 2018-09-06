@@ -6,11 +6,11 @@ date: 2016-03-23T11:48:41-04:00
 header:
   overlay_color: "#000"
   overlay_filter: "0.5"
-  overlay_image: /images/splaLes_Deux_Alpes.jpg
+  overlay_image: /images/splash/Les_Deux_Alpes.jpg
   cta_label: "Github"
   cta_url: "https://github.com/xang1234/"
 intro:
-  - excerpt: 'Projects That I have worked on'
+  - excerpt: 'Projects'
 feature_row:
   - image_path: /images/splash/migrants.png
     alt: "placeholder image 1"
@@ -27,12 +27,12 @@ feature_row2:
     url: "https://github.com/xang1234/Malaysian-Elections-GE14-2018"
     btn_label: "Read More"
     btn_class: "btn--primary"
-
-
 ---
 
 {% include feature_row id="intro" type="center" %}
 
-{% include feature_row % type="left"}
+{% include feature_row %}
+
+{% include feature_row % id="feature_row" type="left" %}
 
 {% include feature_row id="feature_row2" type="left" %}

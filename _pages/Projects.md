@@ -10,7 +10,7 @@ header:
   cta_label: "Github"
   cta_url: "https://github.com/xang1234/"
 intro:
-  - excerpt: '#Projects'
+  - excerpt: ''
 feature_row:
   - image_path: /images/splash/migrants.png
     alt: "placeholder image 1"

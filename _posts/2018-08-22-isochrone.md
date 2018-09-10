@@ -4,6 +4,8 @@ date: 2018-08-22
 tags: [Visualization, Isochrone, Leaflet, R , OpenTripPlanner]
 excerpt: "Isochrone Maps depict areas of equal travel time from a certain point of departure. They are particularly useful for urban transport and hydrology. For example we can easily visualize how long it would take to travel to a point of interest, like to airports or central business districts. If we are interested in buying or renting property then it would be helpful to visualize how well of poorly connected the property is. Typically we would display multiple time intervals to depict successively larger areas that can be reached as the travel time increases."
 comments: true
+header:
+  teaser: /images/isochrone/SMU.JPG
 ---
 ### Introduction
 [Isochrone Maps](https://en.wikipedia.org/wiki/Isochrone_map) depict areas of equal travel time from a certain point of departure. They are particularly useful for urban transport and hydrology. For example we can easily visualize how long it would take to travel to a point of interest, like to airports or central business districts. If we are interested in buying or renting property then it would be helpful to visualize how well of poorly connected the property is. Typically we would display multiple time intervals to depict successively larger areas that can be reached as the travel time increases.

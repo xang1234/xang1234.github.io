@@ -3,6 +3,7 @@ layout: archive
 permalink: /visualizations/
 title: "Visualization Posts"
 author_profile: true
+classes: wide
 header:
   image: "/images/island.jpeg"
 ---

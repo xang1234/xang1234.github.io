@@ -34,7 +34,7 @@
     {% if post.read_time %}
       <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
     {% endif %}
-    <div class="display_post">
+    <div class="display_post" style="width: 100%;>
       <div class="archive__item-teaser" style="width: 280px; float: left;">
         <img src=
           {% if teaser contains "://" %}
@@ -44,7 +44,7 @@
           {% endif %}
         alt="" >
       </div>
-      <div class="archive__item-body" style="margin-left: 30px;">
+      <div class="archive__item-body" style="margin-left: 50px;">
         {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 250 }}</p>{% endif %}
       </div>
   </div>

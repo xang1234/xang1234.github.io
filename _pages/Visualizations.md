@@ -16,7 +16,7 @@ header:
 
     {% for post in site.posts %}
       {% if post.tags contains "Visualization" %}
-        {% include archive-single-mod.html type="grid" %}
+        {% include archive-single-mod.html  %}
 
       {% endif %}
     {% endfor %}

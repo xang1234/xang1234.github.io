@@ -34,17 +34,19 @@
     {% if post.read_time %}
       <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
     {% endif %}
-    <div class="archive__item-teaser">
-      <img src=
-        {% if teaser contains "://" %}
-          "{{ teaser }}"
-        {% else %}
-          "{{ teaser | relative_url }}"
-        {% endif %}
+    <div class="display_post">
+      <div class="archive__item-teaser" style="width: 280px; float: left;">
+        <img src=
+          {% if teaser contains "://" %}
+            "{{ teaser }}"
+          {% else %}
+            "{{ teaser | relative_url }}"
+          {% endif %}
         alt="" width="350">
-    </div>
-    <div class="archive__item-body">
-    {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 250 }}</p>{% endif %}
-    </div>
+      </div>
+      <div class="archive__item-body" style="margin-left: 370px;">
+        {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 250 }}</p>{% endif %}
+      </div>
+  </div>
   </article>
 </div>

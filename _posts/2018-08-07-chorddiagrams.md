@@ -5,6 +5,8 @@ tags: [Visualization, Chord Diagrams, Migration Flows, chorddiag, R]
 excerpt: "Chord Diagrams are a beautiful way of visualizing flows between various entities, for example trade and migration flows between nations. Sander and Abel used them effectively in their representation of global migration flows which was published in the Science Magazine. While their implementation uses javascript, it is possible to use R to produce interactive chord diagrams via the wrapper chorddiag by Matt Flor."
 comments: true
 htmlwidgets: true
+header:
+  teaser: images/chorddiag/static.jpeg
 ---
 *This post is based on a previous project which can be found on* [*this page*](https://wiki.smu.edu.sg/1617t3isss608g1/ISSS608_2016-17_T3_Group5_Immigration_Application).
 ### Introduction

@@ -3,6 +3,8 @@ title: "Webscraping Finviz with Beautiful Soup and Requests"
 date: 2018-08-08
 tags: [Machine Learning, beautifulsoup, webscraping, python]
 excerpt: "Machine learning algorithms are only as good as the data available. Bringing in additional data can give us better insights and improve performance when we have maxed out the performance of the machine learning algorithms. One way to obtain additional data is to scrape websites. "
+header:
+  teaser: images/scrapingfinviz/scrapingfinviz.jpg
 ---
 ### Introduction
 Machine learning algorithms are only as good as the data available. Bringing in additional data can give us better insights and improve performance when we have maxed out the performance of the machine learning algorithms. One way to obtain additional data is to scrape websites. Unlike web crawling where search engine bots explore websites and their links, web scraping is specific and seeks to gather large quantities of information from certain websites, for example user comments on special interest forums, product listings, etc.

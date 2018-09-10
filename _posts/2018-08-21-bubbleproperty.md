@@ -4,6 +4,8 @@ date: 2018-08-21
 tags: [Visualization, Property, Leaflet, R]
 excerpt: "Having seen choropleths and bubble plots, we now examine how to display bubble plots on maps. In particular, we would like to display the location of private properties in Singapore. The *Markers* vignette for R leaflet gives a quick introduction on how to display markers on maps."
 comments: true
+header:
+  teaser: images/bubbleproperty/teaser.JPG
 ---
 ### Introduction
 Having seen [choropleths]({{site.url }}{{site.baseurl }}/choropleth) and [bubble plots]({{site.url }}{{site.baseurl }}/bubbleplot), we now examine how to display bubble plots on maps. In particular, we would like to display the location of private properties in Singapore. The *Markers* [vignette](https://rstudio.github.io/leaflet/markers.html) for R leaflet gives a quick introduction on how to display markers on maps.

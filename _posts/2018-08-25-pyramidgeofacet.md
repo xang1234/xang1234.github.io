@@ -4,6 +4,8 @@ date: 2018-08-25
 tags: [Visualization, ggplot2, population pyramid, geofacet, R]
 excerpt: "Population Pyramids are a specific type of bar chart that allows us to easily visualize the age and sex distribution of the population. A population pyramid allows us to clearly distinguish between countries or regions with high fertility (wide pyramid base) and low fertility (narrow pyramid base)."
 comments: true
+header:
+  teaser: images/pyramidgeofacet/Punggol.jpeg
 ---
 ### Introduction
 [Population Pyramids](https://en.wikipedia.org/wiki/Population_pyramid) are a specific type of bar chart that allows us to easily visualize the age and sex distribution of the population. A population pyramid allows us to clearly distinguish between countries or regions with high fertility (wide pyramid base) and low fertility (narrow pyramid base).

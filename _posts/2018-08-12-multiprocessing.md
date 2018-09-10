@@ -3,6 +3,8 @@ title: "Using Multiprocessing to speed up web scraping "
 date: 2018-08-12
 tags: [Machine Learning, Multiprocessing, python]
 excerpt: "Webscraping or calling APIs to collect data can take significant amounts of time due to the quantities of data involved. We previously saw how we could build a simple web scraper to collect data from Finviz. Depending on the number of tickers that we want to scan, this can take a significant amount of time."
+header:
+  teaser: images/scrapingfinviz/scrapingfinviz.jpg
 ---
 ### Introduction
 Webscraping or calling APIs to collect data can take significant amounts of time due to the quantities of data involved. We previously saw how we could build a [simple web scraper]({{site.url }}{{site.baseurl }}/scrapingfinviz) to collect data from [Finviz](https://finviz.com/). Depending on the number of tickers that we want to scan, this can take a significant amount of time.

@@ -24,3 +24,5 @@ header:
   </ul>
 
 </div>
+
+{% include paginator.html %}

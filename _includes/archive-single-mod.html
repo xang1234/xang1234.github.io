@@ -45,9 +45,10 @@
           alt="" >
         </div>
         <div class="archive__item-body">
-          {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description" style="font-size:100%;">{{ post.excerpt | markdownify | strip_html | truncate: 250 }}</p>{% endif %}
+          {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description" style="font-size:100%; text-align: justify; ">{{ post.excerpt | markdownify | strip_html | truncate: 250 }}</p>{% endif %}
         </div>
       </div>
     </div>
   </article>
 </div>
+{: style="text-align: justify;"}

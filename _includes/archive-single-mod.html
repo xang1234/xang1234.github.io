@@ -42,9 +42,9 @@
           {% else %}
             "{{ teaser | relative_url }}"
           {% endif %}
-        alt="" width="350">
+        alt="" >
       </div>
-      <div class="archive__item-body" style="margin-left: 370px;">
+      <div class="archive__item-body" style="margin-left: 30px;">
         {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 250 }}</p>{% endif %}
       </div>
   </div>

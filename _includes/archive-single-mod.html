@@ -44,14 +44,10 @@
             {% endif %}
           alt="" >
         </div>
-
         <div class="archive__item-body">
-          {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 250 }}</p>{% endif %}
-
+          {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description" style="font-size:160%;">{{ post.excerpt | markdownify | strip_html | truncate: 250 }}</p>{% endif %}
         </div>
       </div>
     </div>
-
-
   </article>
 </div>

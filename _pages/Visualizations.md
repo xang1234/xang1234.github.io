@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: grid
 permalink: /visualizations/
 title: "Visualization Posts"
 author_profile: true
@@ -16,7 +16,7 @@ header:
 
     {% for post in site.posts %}
       {% if post.tags contains "Visualization" %}
-        {% include archive-single.html %}
+        {% include archive-single-mod.html %}
 
       {% endif %}
     {% endfor %}

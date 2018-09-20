@@ -271,7 +271,7 @@ print('best parameters :', classifier.best_params_,
 
 #### 6a. Problem Transformation : Binary Relevance
 
-Binary relevance is simple; each target variable ($$y_1$$, $$y_2$$,..,$$y_n$$) is treated independently and we are reduced to $n$ classification problems. `Scikit-Multilearn` implements this for us, saving us the hassle of splitting the dataset and training each of them separately.  
+Binary relevance is simple; each target variable ($$y_1$$, $$y_2$$,..,$$y_n$$) is treated independently and we are reduced to $$n$$ classification problems. `Scikit-Multilearn` implements this for us, saving us the hassle of splitting the dataset and training each of them separately.  
 
 This classifier can generalize beyond labels present in the training set. However it is very slow if the label space is large.
 

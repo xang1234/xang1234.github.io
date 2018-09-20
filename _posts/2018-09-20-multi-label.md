@@ -12,9 +12,9 @@ header:
 
 ### 1. Introduction
 
-We typically group supervised machine learning problems into classification and regression problems. Within the classification problems sometimes, multiclass classification models are encountered where the classification is not binary but we have to assign a class from `n` choices.
+We typically group supervised machine learning problems into classification and regression problems. Within the classification problems sometimes, multiclass classification models are encountered where the classification is not binary but we have to assign a class from $$n$$ choices.
 
-In multi-label classification, instead of one target variable $y$, we have multiple target variables $y_1$, $y_2$, ..., $y_n$. For example there can be multiple objects in an image and we need to correctly classify them all or we are attempting predict which combination of a product that a customer would buy.
+In multi-label classification, instead of one target variable $$y$$, we have multiple target variables $$y_1$$, $$y_2$$, ..., $$y_n$$. For example there can be multiple objects in an image and we need to correctly classify them all or we are attempting predict which combination of a product that a customer would buy.
 
 Certain decision tree based algorithms in [Scikit-Learn](http://scikit-learn.org/stable/modules/multiclass.html) are naturally able to handle multi-label classification. In this post we explore the [scikit-multilearn library](http://scikit.ml/) which leverages Scikit-Learn and is built specifically for multi-label problems.
 
@@ -23,7 +23,7 @@ Certain decision tree based algorithms in [Scikit-Learn](http://scikit-learn.org
 
 We use the **MediaMill** [dataset](https://ivi.fnwi.uva.nl/isis/mediamill/challenge/data.php) to explore different multi-label algorithms available in Scikit-Multilearn. Our goal is not to optimize classifier performance but to explore the various algorithms applicable to multi-label classification problems. The dataset is reasonable with over 30k train points and 12k test points. There are 120 features and 101 labels.
 
-This dataset was chosen in order to work with a fairly large dataset to illustrate difficulties in multi-label classification instead of a toy example. In particular when there are $N$ labels, the search space increases exponentially to $2^N$. A list of multi-label datasets can be found at Manik Varma's [Extreme Classification Repository](http://manikvarma.org/downloads/XC/XMLRepository.html). The data is provided in sparse format and the authors only provide Matlab scripts to convert them; some data wrangling is needed in python to handle them.
+This dataset was chosen in order to work with a fairly large dataset to illustrate difficulties in multi-label classification instead of a toy example. In particular when there are $$N$$ labels, the search space increases exponentially to $$2^N$$. A list of multi-label datasets can be found at Manik Varma's [Extreme Classification Repository](http://manikvarma.org/downloads/XC/XMLRepository.html). The data is provided in sparse format and the authors only provide Matlab scripts to convert them; some data wrangling is needed in python to handle them.
 
 
 ```python
@@ -182,7 +182,7 @@ nx.draw(
 )
 ```
 
-![png]({{"/images/prophet/output_9_0.png"}})
+![png]({{"/images/multilabel/output_9_0.png"}})
 
 
 
@@ -192,7 +192,7 @@ We get 3 clusters. It might make sense to group them together when we send them 
 
 Before going into the details of each multilabel classification method, we select a metric to gauge how well the algorithm is performing. Similar to a classification problem it is possible to use `Hamming Loss`, `Accuracy`, `Precision`, `Jaccard Similarity`, `Recall`, and `F1 Score`. These are available from Scikit-Learn.
 
-Going forward we'll chose the `F1 Score` as it averages both `Precision` and `Recall`. We set the parameter `average = micro` to calculate metrics globally. There are many labels and some labels are not predicted; using `average = weighted` will result in the score for certain labels to be set to `0` before averaging.
+Going forward we'll chose the `F1 Score` as it averages both `Precision` and `Recall` as well as the `Hamming Loss`. For the F1 score, we set the parameter `average = micro` to calculate metrics globally. There are many labels and some labels are not predicted; using `average = weighted` will result in the score for certain labels to be set to `0` before averaging.
 
 It is also helpful to plot the confusion matrix to understand how the classifier is performing, but in our case there are too many labels to visualize.
 
@@ -271,7 +271,7 @@ print('best parameters :', classifier.best_params_,
 
 #### 6a. Problem Transformation : Binary Relevance
 
-Binary relevance is simple; each target variable ($y_1$, $y_2$,..,$y_n$) is treated independently and we are reduced to $n$ classification problems. `Scikit-Multilearn` implements this for us, saving us the hassle of splitting the dataset and training each of them separately.  
+Binary relevance is simple; each target variable ($$y_1$$, $$y_2$$,..,$$y_n$$) is treated independently and we are reduced to $n$ classification problems. `Scikit-Multilearn` implements this for us, saving us the hassle of splitting the dataset and training each of them separately.  
 
 This classifier can generalize beyond labels present in the training set. However it is very slow if the label space is large.
 
@@ -326,7 +326,7 @@ print('Binary Relevance Hamming Loss:',round(br_hamm,3))
 
 #### 6b. Problem Transformation - Label Powerset
 
-This method transforms the problem into a multiclass classification problem; the target variables ($y_1$, $y_2$,..,$y_n$) are combined and each combination is treated as a unique class. This method will produce many classes.
+This method transforms the problem into a multiclass classification problem; the target variables ($$y_1$$, $$y_2$$,..,$$y_n$$) are combined and each combination is treated as a unique class. This method will produce many classes.
 
 This transformation reduces the problem to only one classifier but, all possible labels need to be present in the training set.
 
@@ -374,9 +374,9 @@ print('Label Powerset Hamming Loss:',round(lp_hamm,3))
 
 #### 6c. Problem Transformation - Classifier Chains
 
-Classifier chains are akin to binary relevance, however the target variables ($y_1$, $y_2$,.., $y_n$) are not fully independent. The features ($x_1$, $x_2$,.., $x_m$) are initially used to predict $y_1$. Next ($x_1$, $x_2$,.., $x_m$, $y_1$) is used to predict $y_2$. At the $n^{th}$ step, ($x_1$, $x_2$,.., $x_m$, $y_1$,.., $y_{n-1}$) predicts $y_n$. The ordering in which the labels are predicted can be determined by the user and can greatly influence the results.
+Classifier chains are akin to binary relevance, however the target variables ($$y_1$$, $$y_2$$,.., $$y_n$$) are not fully independent. The features ($$x_1$$, $$x_2$$,.., $$x_m$$) are initially used to predict $$y_1$$. Next ($$x_1$$, $$x_2$$,.., $$x_m$$, $$y_1$$) is used to predict $$y_2$$. At the $$n^{th}$$ step, ($$x_1$$, $$x_2$$,.., $$x_m$$, $$y_1$$,.., $$y_{n-1}$$) predicts $$y_n$$. The ordering in which the labels are predicted can be determined by the user and can greatly influence the results.
 
-This classifier takes label dependencies into account and generalizes to label combinations not present in the training data. However the quality of the classifier is heavily dependent on the ordering; there are $n!$ possible orderings and this method is slow if the label space is large.
+This classifier takes label dependencies into account and generalizes to label combinations not present in the training data. However the quality of the classifier is heavily dependent on the ordering; there are $$n!$$ possible orderings and this method is slow if the label space is large.
 
 <img src="{{site.url }}{{site.baseurl }}/images/multilabel/chain-classifiers.jpg" alt="">
 

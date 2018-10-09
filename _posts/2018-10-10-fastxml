@@ -8,11 +8,4 @@ header:
   teaser: images/pyramidgeofacet/Punggol.jpeg
 ---
 
-### Introduction
-[Parallel Coordinates](https://en.wikipedia.org/wiki/Parallel_coordinates) plots allow us
-to visualize multiple dimensions of data
-
-
-### Data
-
-###
+The notion of what constitutes a good prediction changes when we go for a few labels to millions of labels .
